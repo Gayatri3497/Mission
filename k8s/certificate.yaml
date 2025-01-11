@@ -1,0 +1,11 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: mission
+spec:
+  secretName: mission
+  dnsNames:
+  - test.shubhamk.online
+  issuerRef:
+    name: prod-app
+    kind: ClusterIssuer

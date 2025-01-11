@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: mission-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    cert-manager.io/cluster-issuer: "prod-app"
+spec:
+  tls:
+  - hosts:
+    - test.shubhamk.online
+    secretName: mission
+  ingressClassName: nginx
+  rules:
+  - host: test.shubhamk.online
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: mission-service
+            port:
+              number: 8080
+     
